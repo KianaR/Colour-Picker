@@ -7,7 +7,7 @@ This project is a work in progress, there are various features to be added/finis
 * Setting to change color format provided
 
 ## Contents 📖
-- [Installation](#installation_⬇️)
+- [Installation](#installation-⬇️)
 - [How it works](#how-it-works-📋)
 - [Known Issues](#known-issues-⚠️)
 - [Contributions](#contributions-📃)
