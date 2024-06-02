@@ -144,6 +144,14 @@ h2 {
     width: max-content;
 }
 
+#top-note {
+    margin-bottom: 3% !important;
+}
+
+#top-note > p {
+    margin: 0px;
+}
+
 .p-container {
     width: 35%;
     margin: 0px;
