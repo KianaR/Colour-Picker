@@ -7,10 +7,10 @@ This project is a work in progress, there are various features to be added/finis
 * Setting to change color format provided
 
 ## Contents 📖
-- [Installation](#installation)
-- [How it works](#how_it_works)
-- [Known Issues](#known_issues)
-- [License](#license)
+- [Installation](#installation_⬇️)
+- [How it works](#how-it-works-📋)
+- [Known Issues](#known-issues-⚠️)
+- [Contributions](#contributions-📃)
 
 ## Installation ⬇️
 ### Clone git project:
