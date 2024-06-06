@@ -1,4 +1,5 @@
-![Static Badge](https://img.shields.io/badge/django-white?style=flat&logo=Django&logoColor=%23092E20&color=%2344B78B) ![Static Badge](https://img.shields.io/badge/bootstrap-white?style=flat&logo=Bootstrap&logoColor=%237952B3)
+![Static Badge](https://img.shields.io/badge/django-white?style=flat&logo=Django&logoColor=%23092E20&color=%2344B78B) ![Static Badge](https://img.shields.io/badge/bootstrap-white?style=flat&logo=Bootstrap&logoColor=%237952B3) ![Static Badge](https://img.shields.io/badge/python-white?style=flat&logo=Python&logoColor=%23FFDD53&color=%233776AB%20)
+
 
 
 # Colour-Picker
