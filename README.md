@@ -1,3 +1,6 @@
+![Static Badge](https://img.shields.io/badge/django-white?style=flat&logo=Django&logoColor=%23092E20&color=%2344B78B) ![Static Badge](https://img.shields.io/badge/bootstrap-white?style=flat&logo=Bootstrap&logoColor=%237952B3)
+
+
 # Colour-Picker
 Colour Picker is a simple Django web-app, designed to allow users to extract colour values per pixel, from any uploaded image using a Bootstrap based interface. 
 
