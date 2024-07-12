@@ -1,0 +1,8 @@
+Django==4.2.3
+Pillow==10.3.0
+python-decouple==3.8
+Brotli==1.1.0
+gunicorn==22.0.0
+uvicorn==0.30.1
+psycopg2-binary==2.9.9
+whitenoise==6.7.0

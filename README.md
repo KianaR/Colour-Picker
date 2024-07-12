@@ -25,10 +25,21 @@ This project is a work in progress, there are various features to be added/finis
 ### Install project dependancies:
   `pip install -r requirements.txt`
 
-### Setup secret key:
+### Setup .env:
   Create '.env' file in `/colour_picker/` 
   
   Add your secret key: `SECRET_KEY = 'YOUR KEY HERE'`
+
+
+  Add following details for your database: 
+
+  `HOST =  'database_url_here'`
+
+  `PASS = 'database_pass_here'`
+
+  `PORT = 'database_port_here'`
+
+  `USER = 'database_user_here'`
 
 <!-- ### Create database set credentials in settings.py
   > By default, sqlite3 will be used. For more info on setting up other databases, visit Django documentation: [Database Setup](https://docs.djangoproject.com/en/5.0/intro/tutorial02/)
