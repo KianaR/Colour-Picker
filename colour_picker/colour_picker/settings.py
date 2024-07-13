@@ -39,8 +39,8 @@ from decouple import config
 SECRET_KEY = config("SECRET_KEY") # this is to replace the secret key you cut away before
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'colour-picker-me33.onrender.com']
+DEBUG = False
+ALLOWED_HOSTS = config("ALLOWED_HOSTS")
 
 
 # Application definition
@@ -53,11 +53,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,13 +89,6 @@ WSGI_APPLICATION = 'colour_picker.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -143,14 +136,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-# if not DEBUG:
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Media files (images, videos, etc)
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -160,3 +145,24 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AWS Config
+if config("AWS_ACCESS_KEY") and config("AWS_SECRET_KEY") and config("AWS_BUCKET_NAME") and config("AWS_S3_DOMAIN"):
+    AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY")
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_KEY")
+
+    AWS_STORAGE_BUCKET_NAME = config("AWS_BUCKET_NAME")
+    AWS_S3_CUSTOM_DOMAIN = config("AWS_S3_DOMAIN")
+    AWS_S3_FILE_OVERWRITE = False
+
+    STORAGES = {
+        #Media files
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+        },
+
+        #css, js etc
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+        }
+    }

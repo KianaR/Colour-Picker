@@ -1,4 +1,5 @@
-![Static Badge](https://img.shields.io/badge/django-white?style=flat&logo=Django&logoColor=%23092E20&color=%2344B78B) ![Static Badge](https://img.shields.io/badge/bootstrap-white?style=flat&logo=Bootstrap&logoColor=%237952B3) ![Static Badge](https://img.shields.io/badge/python-white?style=flat&logo=Python&logoColor=%23FFDD53&color=%233776AB%20)
+![Static Badge](https://img.shields.io/badge/django-white?style=flat&logo=Django&logoColor=%23092E20&color=%2344B78B) ![Static Badge](https://img.shields.io/badge/bootstrap-white?style=flat&logo=Bootstrap&logoColor=%237952B3) ![Static Badge](https://img.shields.io/badge/python-white?style=flat&logo=Python&logoColor=%23FFDD53&color=%233776AB%20) ![Static Badge](https://img.shields.io/badge/AWS--S3-WHITE?style=flat&logo=Amazon%20S3&logoColor=white&color=%23569A31)
+
 
 
 
@@ -40,6 +41,9 @@ This project is a work in progress, there are various features to be added/finis
   `PORT = 'database_port_here'`
 
   `USER = 'database_user_here'`
+
+  > Switch 'DEBUG' to True and 'ALLOWED_HOSTS' to [] in settings.py, for local copies.
+
 
 <!-- ### Create database set credentials in settings.py
   > By default, sqlite3 will be used. For more info on setting up other databases, visit Django documentation: [Database Setup](https://docs.djangoproject.com/en/5.0/intro/tutorial02/)
