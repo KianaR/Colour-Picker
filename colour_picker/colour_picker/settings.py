@@ -40,7 +40,7 @@ SECRET_KEY = config("SECRET_KEY") # this is to replace the secret key you cut aw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = config("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'colour-picker-me33.onrender.com']
 
 
 # Application definition
