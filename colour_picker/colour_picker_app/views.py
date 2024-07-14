@@ -16,11 +16,10 @@ def main(request):
             form = ImageForm()
             img_obj = Image_Upload.objects.latest("date_uploaded")
             img = img_obj.image.url
-            image = img if img else ""
             id = img_obj.id
             context = {
                 "form": form,
-                "image": image,
+                "image": img,
                 "id": id
             }
             colours_stores = Colour_Store.objects.all()
