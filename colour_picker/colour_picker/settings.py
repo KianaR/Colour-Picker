@@ -98,7 +98,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': os.environ.get("USER"),
         'PASSWORD': os.environ.get("PASS"),
-        'HOST': os.environ.get("DATABASE_URL"),
+        'HOST': os.environ.get("HOST"),
         'PORT': os.environ.get("PORT_DB")
     }
 }
@@ -175,43 +175,4 @@ elif DEBUG==True:
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
     MEDIA_URL = "/media/"
 
-
-
-# USE_S3 = os.environ.get('USE_S3') == 'TRUE'
-
-# if USE_S3:
-#     # aws settings
-#     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
-#     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
-#     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME')
-#     AWS_DEFAULT_ACL = 'public-read'
-#     AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
-#     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-
-#     # s3 static settings
-#     AWS_LOCATION = 'static'
-#     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-
-#     # s3 public media settings
-#     PUBLIC_MEDIA_LOCATION = 'media'
-#     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-#     STORAGES = {
-#         #Media files
-#         "default": {
-#             "BACKEND": "colour_picker.storage_backends.PublicMediaStorage"
-#         },
-
-#         #css, js etc
-#         "staticfiles": {
-#             "BACKEND": "colour_picker.storage_backends.StaticStorage"
-#         }
-#     }
-
-# else:
-#     STATIC_URL = 'staticfiles/'
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#    # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#     MEDIA_URL = 'mediafiles/'
-
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 

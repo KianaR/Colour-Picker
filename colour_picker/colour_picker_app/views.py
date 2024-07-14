@@ -1,10 +1,9 @@
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import ImageForm
 from .models import Image_Upload, Colour_Store
 from PIL import Image
-import colorsys
 
 def main(request):
     if request.method == "POST":

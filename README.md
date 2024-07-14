@@ -1,4 +1,4 @@
-![Static Badge](https://img.shields.io/badge/django-white?style=flat&logo=Django&logoColor=%23092E20&color=%2344B78B) ![Static Badge](https://img.shields.io/badge/bootstrap-white?style=flat&logo=Bootstrap&logoColor=%237952B3) ![Static Badge](https://img.shields.io/badge/python-white?style=flat&logo=Python&logoColor=%23FFDD53&color=%233776AB%20) ![Static Badge](https://img.shields.io/badge/AWS--S3-WHITE?style=flat&logo=Amazon%20S3&logoColor=white&color=%23569A31)
+![Static Badge](https://img.shields.io/badge/django-white?style=flat&logo=Django&logoColor=%23092E20&color=%2344B78B) ![Static Badge](https://img.shields.io/badge/bootstrap-white?style=flat&logo=Bootstrap&logoColor=%237952B3) ![Static Badge](https://img.shields.io/badge/python-white?style=flat&logo=Python&logoColor=%23FFDD53&color=%233776AB%20) ![Static Badge](https://img.shields.io/badge/AWS--S3-WHITE?style=flat&logo=Amazon%20S3&logoColor=white&color=%23569A31) ![Static Badge](https://img.shields.io/badge/AWS--RDS-white?logo=Amazon%20RDS&logoColor=white&color=%23527FFF)
 
 
 
