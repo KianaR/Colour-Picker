@@ -35,8 +35,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-from decouple import config
-SECRET_KEY = config("SECRET_KEY") # this is to replace the secret key you cut away before
+
+# from decouple import config
+from dotenv import load_dotenv
+load_dotenv()
+SECRET_KEY = os.environ.get("SECRET_KEY") # this is to replace the secret key you cut away before
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -94,10 +97,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': config("USER"),
-        'PASSWORD': config("PASS"),
-        'HOST': config("HOST"),
-        'PORT': config("PORT")
+        'USER': os.environ.get("USER"),
+        'PASSWORD': os.environ.get("PASS"),
+        'HOST': os.environ.get("HOST"),
+        'PORT': os.environ.get("PORT")
     }
 }
 
@@ -147,12 +150,12 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS Config
-if config("AWS_ACCESS_KEY") and config("AWS_SECRET_KEY") and config("AWS_BUCKET_NAME") and config("AWS_S3_DOMAIN"):
-    AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY")
-    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_KEY")
+if os.environ.get("AWS_ACCESS_KEY") and os.environ.get("AWS_SECRET_KEY") and os.environ.get("AWS_BUCKET_NAME") and os.environ.get("AWS_S3_DOMAIN"):
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_KEY")
 
-    AWS_STORAGE_BUCKET_NAME = config("AWS_BUCKET_NAME")
-    AWS_S3_CUSTOM_DOMAIN = config("AWS_S3_DOMAIN")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
+    AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
     AWS_S3_FILE_OVERWRITE = False
 
     STORAGES = {
