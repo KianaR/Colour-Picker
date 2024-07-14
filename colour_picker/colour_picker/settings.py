@@ -38,7 +38,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 from dotenv import load_dotenv
 load_dotenv()
-SECRET_KEY = os.environ.get("SECRET_KEY") # this is to replace the secret key you cut away before
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -137,36 +137,45 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
-
-# Media files (images, videos, etc)
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AWS Config
-if os.environ.get("AWS_ACCESS_KEY") and os.environ.get("AWS_SECRET_KEY") and os.environ.get("AWS_BUCKET_NAME") and os.environ.get("AWS_S3_DOMAIN"):
-    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY")
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_KEY")
+USE_S3 = os.environ.get('USE_S3') == 'TRUE'
 
-    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
-    AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
-    AWS_S3_FILE_OVERWRITE = False
-    AWS_QUERYSTRING_AUTH = False
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME')
     AWS_DEFAULT_ACL = 'public-read'
+    AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     STORAGES = {
         #Media files
         "default": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+            "BACKEND": "colour_picker.storage_backends.PublicMediaStorage"
         },
 
         #css, js etc
         "staticfiles": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+            "BACKEND": "colour_picker.storage_backends.StaticStorage"
         }
     }
+else:
+    STATIC_URL = '/staticfiles/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/mediafiles/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
