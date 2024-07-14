@@ -149,22 +149,24 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS Config
-#if os.environ.get("AWS_ACCESS_KEY") and os.environ.get("AWS_SECRET_KEY") and os.environ.get("AWS_BUCKET_NAME") and os.environ.get("AWS_S3_DOMAIN"):
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_KEY")
+if os.environ.get("AWS_ACCESS_KEY") and os.environ.get("AWS_SECRET_KEY") and os.environ.get("AWS_BUCKET_NAME") and os.environ.get("AWS_S3_DOMAIN"):
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_KEY")
 
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
-AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
-AWS_S3_FILE_OVERWRITE = False
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
+    AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
+    AWS_S3_FILE_OVERWRITE = False
 
-STORAGES = {
-    #Media files
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
-    },
+    MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/"
+    
+    STORAGES = {
+        #Media files
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+        },
 
-    #css, js etc
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+        #css, js etc
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+        }
     }
-}
