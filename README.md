@@ -6,7 +6,7 @@
 # Colour-Picker
 Colour Picker is a simple Django web-app, designed to allow users to extract colour values per pixel, from any uploaded image using a Bootstrap based interface. 
 
-This project is a work in progress, there are various features to be added/finished such as:
+This project is a n MVP, there are various features to be added such as:
 
 * Colour conversions
 * Setting to change color format provided
