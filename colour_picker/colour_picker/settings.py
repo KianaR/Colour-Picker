@@ -156,8 +156,8 @@ if os.environ.get("AWS_ACCESS_KEY") and os.environ.get("AWS_SECRET_KEY") and os.
     AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
     AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
     AWS_S3_FILE_OVERWRITE = False
-
-    MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/"
+    AWS_QUERYSTRING_AUTH = False
+    AWS_DEFAULT_ACL = 'public-read'
     
     STORAGES = {
         #Media files
