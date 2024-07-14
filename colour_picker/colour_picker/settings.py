@@ -134,48 +134,84 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-USE_S3 = os.environ.get('USE_S3') == 'TRUE'
+# AWS Config
+if DEBUG==False:
+    if os.environ.get("AWS_ACCESS_KEY") and os.environ.get("AWS_SECRET_KEY") and os.environ.get("AWS_BUCKET_NAME") and os.environ.get("AWS_S3_DOMAIN"):
+        AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY")
+        AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_KEY")
+        AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+        AWS_DEFAULT_ACL = 'public-read'
+        AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
+        AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
+        AWS_S3_FILE_OVERWRITE = False
 
-if USE_S3:
-    # aws settings
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME')
-    AWS_DEFAULT_ACL = 'public-read'
-    AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+        AWS_LOCATION = 'static'
+        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 
-    # s3 static settings
-    AWS_LOCATION = 'static'
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+        PUBLIC_MEDIA_LOCATION = 'media'
+        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 
-    # s3 public media settings
-    PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    STORAGES = {
-        #Media files
-        "default": {
-            "BACKEND": "colour_picker.storage_backends.PublicMediaStorage"
-        },
+        STORAGES = {
+            #Media files
+            "default": {
+                "BACKEND": "colour_picker.storage_backends.PublicMediaStorage"
+            },
 
-        #css, js etc
-        "staticfiles": {
-            "BACKEND": "colour_picker.storage_backends.StaticStorage"
+            #css, js etc
+            "staticfiles": {
+                "BACKEND": "colour_picker.storage_backends.StaticStorage"
+            }
         }
-    }
-else:
-    STATIC_URL = '/staticfiles/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_URL = '/mediafiles/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+elif DEBUG==True:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    MEDIA_URL = "/media/"
+
+
+
+# USE_S3 = os.environ.get('USE_S3') == 'TRUE'
+
+# if USE_S3:
+#     # aws settings
+#     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
+#     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
+#     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME')
+#     AWS_DEFAULT_ACL = 'public-read'
+#     AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_DOMAIN")
+#     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+#     # s3 static settings
+#     AWS_LOCATION = 'static'
+#     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+
+#     # s3 public media settings
+#     PUBLIC_MEDIA_LOCATION = 'media'
+#     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+#     STORAGES = {
+#         #Media files
+#         "default": {
+#             "BACKEND": "colour_picker.storage_backends.PublicMediaStorage"
+#         },
+
+#         #css, js etc
+#         "staticfiles": {
+#             "BACKEND": "colour_picker.storage_backends.StaticStorage"
+#         }
+#     }
+
+# else:
+#     STATIC_URL = 'staticfiles/'
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#    # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#     MEDIA_URL = 'mediafiles/'
+
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
